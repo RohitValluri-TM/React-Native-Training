@@ -1,0 +1,54 @@
+To write a custom hook in React Native, you can follow these steps:
+
+Create a new function that starts with the word "use" and has a descriptive 
+name that represents the functionality of the hook.
+
+Inside the function, declare any state variables that the hook will need 
+using the useState hook.
+
+Implement any logic or functionality that the hook will need to perform, 
+such as fetching data from an API or updating state based on user input.
+
+Return any state or functions that the component using the hook will need to access.
+
+Use the custom hook in any component by calling it like a regular function 
+at the top level of the component.
+
+It's worth noting that hooks can only be called at the top level of a component or
+ other hook, not inside loops or conditions.
+
+Also, you need to make sure you are using the latest version 
+of React Native which supports hooks.
+
+Here is an example of a custom hook called useCounter that maintains a 
+count state and an increment function:
+
+import { useState } from 'react';
+
+function useCounter() {
+  const [count, setCount] = useState(0);
+  function increment() {
+    setCount(count + 1);
+  }
+  return { count, increment };
+}
+
+
+Use it now:
+
+import React, { useState } from 'react';
+import { View, Text, Button } from 'react-native';
+import useCounter from './useCounter';
+
+function Counter() {
+  const { count, increment } = useCounter();
+  return (
+    <View>
+      <Text>{count}</Text>
+      <Button onPress={increment} title="Increment" />
+    </View>
+  );
+}
+
+
+

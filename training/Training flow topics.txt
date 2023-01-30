@@ -1,0 +1,52 @@
+Day1 :
+   - introduction to react and react native
+   - about expo
+   - environment setup
+           install nodejs 16.x
+           install jdk 15.x
+           set jdk path
+           install android studio and add nexus7- with pie emulator
+           install vs code
+           install expo cli     npm install -g expo-cli
+           create project : expo init tech-app
+           expo start      (a for android w for web bundle)
+
+     - explain reactnative.dev  documentation
+     - work with core components - View, Text, Image
+----------------------------------------------------------------------
+Day 2 : 
+    - work with dynamic image (Pizzatranslator)
+    - exploain react hooks 
+    - explian immutability
+    - work with FlatList, SelectorList
+    - React native architecture - ppt
+    - Navigation theory
+    - Work with stack navigation - router-app
+ ==================================
+Day 3:
+   - working with custom hooks
+   - case study on routing (adding profile with navigation using expo modules)
+   - work with camera (with and without expo)
+   - project - tweets-app
+   - React native Animation
+   - forms in react native
+   - Form validation with Formik
+----------------------------------------------------------------------
+Day 4:
+   - Introduction to Redux
+   - Redux api overview
+   - Case study on redux with react native using middleware
+   - Backend integration with redux with CRUD operations
+   - Testing with JEST
+----------------------------------------------------------------------
+Day 5:
+   - Working with Crash Report
+   - Case study on Notification 
+   - Accessing file system with permissions
+   - Music player with react native
+   - Accessing bluetooth
+   - Builiding the app for production
+   - Deployment of the app.
+ ===================================
+
+   - 

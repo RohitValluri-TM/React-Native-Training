@@ -1,0 +1,93 @@
+React-native:
+
+Architecture:
+
+Fabric
+======
+Fabric is React Native's new rendering system, a conceptual evolution of the legacy 
+render system. The core principles are to unify more render logic in C++, 
+improve interoperability with host platforms, and to unlock new capabilities 
+for React Native. 
+
+Benefits of Fabric:
+
+- Code quality, performance  and extensibility.
+	- type safety
+	- Shared c++ code between host view and react view.
+	- Better host platform interop.
+	- improved performance
+	- consistency
+	- faster startup
+	- less serialization of data between  js and host platform.
+
+- Improved interop between host view and react view with async. rendering
+- support multi-priority  and sync. events.
+- Integration with React suspence more intutive design
+- Enable react concurrent feature on react native.
+- Easy implementation of server side rendering.
+
+Render, Commit  and Mount:
+
+The React Native renderer goes through a sequence of work to 
+render React logic to a host platform. This sequence of work is called the 
+render pipeline and occurs for initial renders and updates to the UI state.
+
+he render pipeline can be broken into three general phases:
+
+Render: React executes product logic which creates a React Element Trees in JavaScript. 
+From this tree, the renderer creates a React Shadow Tree in C++.
+
+Commit: After a React Shadow Tree is fully created, the renderer triggers a commit.
+This promotes both the React Element Tree and the newly created React Shadow Tree
+ as the “next tree” to be mounted. This also schedules calculation of its layout 
+information.
+
+Mount: The React Shadow Tree, now with the results of layout calculation,
+is transformed into a Host View Tree. 
+
+
+React Native in the Facebook app is backed by the new renderer.
+
+AppRegistry is the JS entry point to running all React Native apps. App root 
+components should register themselves with AppRegistry.registerComponent, then the 
+native system can load the bundle for the app and then actually run the app 
+when it's ready by invoking AppRegistry.runApplication.
+
+import {Text, AppRegistry} from 'react-native';
+
+const App = () => (
+  <View>
+    <Text>App1</Text>
+  </View>
+);
+
+AppRegistry.registerComponent('Appname', () => App);
+
+To "stop" an application when a view should be destroyed, 
+call AppRegistry.unmountApplicationComponentAtRootTag with the tag 
+that was passed into runApplication. These should always be used as a pair.
+
+
+AppState:
+
+AppState
+AppState can tell you if the app is in the foreground or background, 
+and notify you when the state changes.
+
+AppState is frequently used to determine the intent and proper behavior 
+when handling push notifications.
+----------------------------------------------------------
+
+App States
+   - active - The app is running in the foreground
+   - background - The app is running in the background. The user is either:
+			- in another app
+			- on the home screen
+			- [Android] on another Activity (even if it was launched by your app)
+
+			- [iOS] inactive - This is a state that occurs when transitioning 
+              between foreground & background, and during periods of inactivity 
+              such as entering the multitasking view,
+              opening the Notification Center or in the event of an incoming call.
+----------------------------------------------------------------------------
+
